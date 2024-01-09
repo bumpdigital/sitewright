@@ -1,7 +1,7 @@
 {
   "domain": "https://www.sitemaps.org/",
   "projectName": "sitemaps",
-  "urls": [
+  "urlSpecs": [
     {
       "depth": 0,
       "length": 25,

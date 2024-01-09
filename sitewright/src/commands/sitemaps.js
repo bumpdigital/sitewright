@@ -29,7 +29,7 @@ export async function transformSitemap(url) {
     return {
         projectName,
         domain: url.origin + '/',
-        urls: urls.sort((a, b) => {
+        urlSpecs: urls.sort((a, b) => {
             a.depth < b.depth
             ? -1
             : a.depth > b.depth

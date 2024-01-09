@@ -55,7 +55,7 @@ async function setup(options, isDefault) {
     const scriptContents = fs.readFileSync(scriptUrl, { encoding: 'utf-8' });
     fs.writeFileSync(path.join(process.cwd(), `./projects/${projectName}.js`), scriptContents);
 
-    const envFile = `projectname=${projectName}\ndomain=${sitemap.domain || 'https://localhost'}\nwhitelist=${options.whitelist || ''}`;
+    const envFile = `projectname=${projectName}\ndomain=${sitemap.domain || 'https://localhost'}\njswhitelist=${options.whitelist || ''}`;
     fs.writeFileSync(path.join(process.cwd(), `${isDefault ? '' : projectName}.env`), envFile);
 }
 

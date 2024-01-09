@@ -11,7 +11,7 @@ describe('converting sitemaps', () => {
     it('can fetch one from the interwebz', async () => {
         const sitemap = await transformSitemap('https://www.sitemaps.org/sitemap.xml');
 
-        sitemap.urls = sitemap.urls.filter((x, i) => i < 5);
+        sitemap.urlSpecs = sitemap.urlSpecs.filter((x, i) => i < 5);
 
         approvals.verifyAsJSON(path.join(process.cwd(),'test/sitemaps-approved'), 'sitemaps-org', sitemap);
     });
