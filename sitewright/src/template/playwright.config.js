@@ -1,6 +1,7 @@
 // @ts-check
-const { defineConfig, devices } = require('@playwright/test');
-const path = require('path');
+import { defineConfig, devices } from '@playwright/test';
+import path from 'path';
+import dotenv from 'dotenv';
 
 /**
  * Enables multiple "site projects"
@@ -8,16 +9,17 @@ const path = require('path');
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
+
 if (!process.env.domain) {
-  require('dotenv').config({
-    path: path.resolve(__dirname, (process.env.projectname || '') + '.env')
+  dotenv.config({
+    path: path.resolve(process.cwd(), (process.env.projectname || '') + '.env')
   });
 }
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-module.exports = defineConfig({
+export default defineConfig({
 
   /* Sitewright customizations */
 

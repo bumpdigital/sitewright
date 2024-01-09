@@ -1,0 +1,20 @@
+{
+  "name": "sitewright",
+  "version": "1.0.1",
+  "description": "",
+  "scripts": {},
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/engine/index.js",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.6",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1"
+  },
+  "bin": {
+    "sitewright": "./src/commands/index.js"
+  }
+}

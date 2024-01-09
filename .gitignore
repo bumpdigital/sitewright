@@ -1,7 +1,11 @@
 node_modules/
-src/playwright/test-results/
-src/playwright/playwright-report/
-src/playwright/blob-report/
-src/playwright/playwright/.cache/
+template/src/test-results/
+template/src/playwright-report/
+template/src/blob-report/
+template/src/playwright/.cache/
 
-src/playwright/tests/snapshots/
+template/src/tests/snapshots/
+
+test-template/
+
+**/*.tgz

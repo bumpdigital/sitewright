@@ -21,23 +21,23 @@ jobs:
         node-version: 18
     - name: Install dependencies
       run: npm ci
-      working-directory: ./src/playwright
+      working-directory: ./template/src
     - name: Install Playwright Browsers
-      working-directory: ./src/playwright
+      working-directory: ./template/src
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      working-directory: ./src/playwright
+      working-directory: ./template/src
       # increase levels here, for instance -g "L[0-2]\s"
       run: npx playwright test -g "L[0]\s"
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-report
-        path: ./src/playwright/playwright-report/test-results.xml
+        path: ./template/src/playwright-report/test-results.xml
         retention-days: 30
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
       with:
         files: |
-          ./src/playwright/playwright-report/test-results.xml
+          ./template/src/playwright-report/test-results.xml

@@ -1,7 +1,24 @@
 import { test as base, expect } from '@playwright/test';
-import { slowScroll } from './slowscroll';
+import { slowScroll } from './slowscroll.js';
 
 const maxDiff = process.env.maxdiff || .03;
+
+export function extendTest(base) {
+    return base.extend({
+        page: async ({browser}, use) => {
+            const context = await browser.newContext();
+            const page = await context.newPage();
+            page.validateScreenshot = validateScreenshot;
+            page.slowScroll = async function() {
+                await slowScroll(this);
+            }
+    
+            await mockExternalJS(page);
+    
+            await use(page);
+        }
+    });
+}
 
 export const test = base.extend({
     page: async ({browser}, use) => {

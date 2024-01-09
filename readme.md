@@ -1,7 +1,14 @@
+# Sitewright CLI
+
+- `npm i [wherever-we-put-the-tarball]`
+- `npx sitewright init` TODO: ` -project demo -domain https://mysite.com`
+- `npx sitewright test`
+
 # Sitewright Template
 
 A template for playwright visual regression tests based on sitemaps.
 
+- [Sitewright CLI](#sitewright-cli)
 - [Sitewright Template](#sitewright-template)
     - [Important](#important)
       - [⚠ Snapshot storage](#-snapshot-storage)
