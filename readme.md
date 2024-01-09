@@ -3,7 +3,9 @@
 A template for playwright visual regression tests based on sitemaps.
 
 - [Sitewright Template](#sitewright-template)
-    - [⚠ Snapshot storage](#-snapshot-storage)
+    - [Important](#important)
+      - [⚠ Snapshot storage](#-snapshot-storage)
+      - [⚠ Sitewright "Project" vs. Playwright "Project"](#-sitewright-project-vs-playwright-project)
   - [Getting started](#getting-started)
   - [Configuring a test suite](#configuring-a-test-suite)
     - [Bulding a suite from a sitemap](#bulding-a-suite-from-a-sitemap)
@@ -13,7 +15,9 @@ A template for playwright visual regression tests based on sitemaps.
       - [Scrolling and waiting](#scrolling-and-waiting)
       - [Slow scrolling](#slow-scrolling)
     - [Playwright config customizations](#playwright-config-customizations)
-    - [Screenshot location](#screenshot-location)
+      - [Loading project-specific environment files](#loading-project-specific-environment-files)
+      - [Reporting and CI](#reporting-and-ci)
+      - [Screenshot location](#screenshot-location)
   - [Running the tests](#running-the-tests)
     - [Filtering](#filtering)
     - [Flakyness](#flakyness)
@@ -22,12 +26,21 @@ A template for playwright visual regression tests based on sitemaps.
   - [Tips \& Tricks](#tips--tricks)
     - [Create a regex filter for failed/outdated tests](#create-a-regex-filter-for-failedoutdated-tests)
 
-### ⚠ Snapshot storage
+### Important
+
+#### ⚠ Snapshot storage
 
 By default snapshots are ignored by .gitignore.  
 This template has two demo screenshots for demoing the GH pipeline.  
 Steps should be taken to provide a script for downloading, (optionally also uploading) gold files from(/to) a central storage. 
 Add said script to the GH pipeline if used.
+
+#### ⚠ Sitewright "Project" vs. Playwright "Project"
+
+Playwright uses the term "Project" to specify browser and device.  
+The sitewright template use the term "Project" to specify different sitemaps and validators.
+This documentation will use the term "Browser type" instead of Playwrights "Project".  
+"Project" here will always refer to the set of environment-, sitemap- and validator-files.
 
 ## Getting started
 
@@ -48,7 +61,7 @@ The suite will use one or more transformed sitemap(s), custom function(s) and  e
 `cd src/playwright/`  
 `./tools/Convert-Sitemap.ps1 [path to sitemap] | Set-Content ./projects/[projectname].json`  
 or  
-`.\Convert-Sitemap.ps1 [full URL to sitemap] | Set-Content ./projects/[projectname].json`
+`./tools/Convert-Sitemap.ps1 [full URL to sitemap] | Set-Content ./projects/[projectname].json`
 
 ### Building suite from list of URLs
 
@@ -101,7 +114,7 @@ await page.evaluate(() => window.scrollTo(0, 0));
 
 #### Slow scrolling
 
-Some pages might not show content unless its in the viewport.  
+Some pages might not show content unless it's in the viewport.  
 Sitewright adds a `slowScroll()` method to `page`.  
 ⚠ Slow scrolling delays the test by 100ms per 100px height.
 
@@ -112,6 +125,8 @@ await page.evaluate(() => window.scrollTo(0, 0));
 
 ### Playwright config customizations
 
+#### Loading project-specific environment files
+
 In order to run different "projects", dotenv is used to load .env-files based on the `projectname` environment variable.  
 The latter is set using cross_env, while the project specific ones are in the project specific .env-file.
 
@@ -120,6 +135,8 @@ require('dotenv').config({
   path: path.resolve(__dirname, (process.env.projectname || '') + '.env')
 });
 ```
+
+#### Reporting and CI
 
 In order to output test reports that GitHub Actions can publish, the JUnit reporter is conditionally used for CI:
 
@@ -136,7 +153,7 @@ module.exports = defineConfig({
 });
 ```
 
-### Screenshot location
+#### Screenshot location
 
 All screenshots are put in a nicer path than under the test file name folder.
 
