@@ -179,8 +179,7 @@ For instance `-g L[0-1]` to verify the root page and all first level URLs.
 ### Flakyness
 
 Several layouts may be flaky in several browsers.  
-The only way to get consistent results may be to specify an amount of retries to get a golden result. Three is usually enough.  
-By default local workers are 3.
+The only way to get consistent results may be to specify an amount of retries to get a golden result. Three is usually enough. Specify using the `--retries n` option.  
 
 ### Examples
 
