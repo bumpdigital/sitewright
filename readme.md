@@ -174,7 +174,7 @@ Run tests for level 0-2:
 `npx playwright test --retries 3 -g "L[0-2]\s`
 
 Run tests for a named project:  
-`npx cross-env sitename=other npx playwright test --retries 3 [-g ...]`
+`npx cross-env sitename=other playwright test --retries 3 [-g ...]`
 
 ## Updating snapshots
 
