@@ -1,11 +1,13 @@
-[
+{
+  "domain": "https://bump.digital",
+  "projectName": "bump",
+  "urlSpecs": [
     {
       "depth": 0,
       "length": 21,
       "url": "https://bump.digital/",
       "mod": null,
-      "parts": [
-      ]
+      "parts": []
     },
     {
       "depth": 1,
@@ -107,4 +109,4 @@
       ]
     }
   ]
-  
+}

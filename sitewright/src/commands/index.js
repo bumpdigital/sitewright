@@ -6,9 +6,12 @@ import fs from 'fs';
 import path from 'path';
 import { transformSitemap } from './sitemaps.js';
 
+// TODO: Rewrite setup with the fsPromise API
 // TODO: Validate root domain when no sitemap
 // TODO: Maybe not uncritically overwrite stuff
 // TODO: Validate more stuff
+// TODO: More versatile building of test args array w/different options
+// TODO: Generate URL-spec file from list of URLs
 
 async function copyAll() {
     const templateUrl = new URL('./../template/', import.meta.url);
@@ -90,11 +93,14 @@ program.command('add')
     });
 
 program.command('test')
-    .option('-l, --level <number>', 'how deep to go', 0)
-    .option('-r, --retries <number>', 'how many retries to do', 3)
+    .option('-g, --grep <tring>', 'Custom grep. Will ignore --level.')
+    .option('-l, --level <number>', 'How deep to go. Ignored when using --grep.', 0)
+    .option('-r, --retries <number>', 'how many retries to do', 1)
     .option('-w, --workers <number>', 'how many workers to use', 8)
     .action((options) => {
-        let sp = spawn('npx', ['playwright', 'test', '-g', 'L' + options.level, '--retries', options.retries, '--workers', options.workers], {
+        const command = ['playwright', 'test', '-g', options.grep || ( options.level ? `L[0-${options.level}]\s` : 'L0' ), '--retries', options.retries, '--workers', options.workers];
+        console.log('executing command', command);
+        let sp = spawn('npx', command, {
             stdio: 'inherit',
             shell: true
         });
