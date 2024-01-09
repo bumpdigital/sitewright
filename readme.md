@@ -1,7 +1,10 @@
 # Sitewright CLI
 
 - `npm i [wherever-we-put-the-tarball]`
-- `npx sitewright init` TODO: ` -project demo -domain https://mysite.com`
+- `npx sitewright init --name demo -root https://mysite.com`  
+  or
+  `npx sitewright init --sitemap https://sitemaps.org/sitemap.xml`
+- `npx sitewright add [-n / -r | -s]`
 - `npx sitewright test`
 
 # Sitewright Template

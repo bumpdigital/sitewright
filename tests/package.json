@@ -1,0 +1,20 @@
+{
+  "name": "sitewright-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "mocha --watch --parallel"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "approvals": "^6.2.4",
+    "chai": "^5.0.0",
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+  }
+}

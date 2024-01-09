@@ -1,0 +1,49 @@
+{
+  "domain": "https://www.sitemaps.org/",
+  "projectName": "sitemaps",
+  "urls": [
+    {
+      "depth": 0,
+      "length": 25,
+      "mod": "2016-11-21",
+      "parts": [],
+      "url": "https://www.sitemaps.org/"
+    },
+    {
+      "depth": 1,
+      "length": 38,
+      "mod": "2022-12-15",
+      "parts": [
+        "protocol.html"
+      ],
+      "url": "https://www.sitemaps.org/protocol.html"
+    },
+    {
+      "depth": 1,
+      "length": 33,
+      "mod": "2016-11-21",
+      "parts": [
+        "faq.html"
+      ],
+      "url": "https://www.sitemaps.org/faq.html"
+    },
+    {
+      "depth": 1,
+      "length": 35,
+      "mod": "2016-11-21",
+      "parts": [
+        "terms.html"
+      ],
+      "url": "https://www.sitemaps.org/terms.html"
+    },
+    {
+      "depth": 1,
+      "length": 28,
+      "mod": "2016-11-21",
+      "parts": [
+        "da"
+      ],
+      "url": "https://www.sitemaps.org/da/"
+    }
+  ]
+}

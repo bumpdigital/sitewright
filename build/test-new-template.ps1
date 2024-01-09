@@ -22,4 +22,4 @@ Set-Location "$PSScriptRoot\..\test-template"
 npm init -f
 npm i "../sitewright/sitewright-$version.tgz"
 
-npx sitewright init demo -r https://bump.digital -w bump.digital 
+npx sitewright init -n demo -r https://bump.digital -w bump.digital 
