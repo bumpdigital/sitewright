@@ -3,18 +3,39 @@ import { program } from 'commander';
 import { exec, spawn } from 'child_process';
 
 import fs from 'fs';
+import path from 'path';
 
 program.command('init')
-    .action((options) => {
+    .argument('<projectname>', 'Default project name')
+    .option('-r, --root <url>', 'Full URL to the root of the site')
+    .option('-s, --sitemap <url>', 'Full URL to a sitemap')
+    .option('-w, --whitelist <string>', 'Comma separated list of domains to allow JS from')
+    .action((projectName, options) => {
         const templateUrl = new URL('./../template/', import.meta.url);
-        console.log(`Copying ${templateUrl} to ${process.cwd()}`);
-        fs.cp(templateUrl, process.cwd(), {recursive:true}, (err) => {
-            if (err) {
-                console.error(err.message);
-            } else {
-                console.log('We\'re ready for the next step. :)')
-            }
-        });
+
+        console.log(`initializing project ${projectName} with options`, options);
+        
+        function copyAll() {
+            fs.cp(templateUrl, process.cwd(), {recursive:true}, (err) => {
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    setup()
+                }
+            });
+        }
+
+        function setup() {
+            const envFile = `projectname=${projectName}\ndomain=${options.root}\nwhitelist=${options.whitelist}`;
+            fs.writeFileSync(path.join(process.cwd(), '.env'), envFile);
+
+            fs.renameSync(path.join(process.cwd(), './projects/demo.js'), path.join(process.cwd(), `./projects/${projectName}.js`));
+            fs.renameSync(path.join(process.cwd(), './projects/demo.json'), path.join(process.cwd(), `./projects/${projectName}.json`));
+
+            fs.writeFileSync(path.join(process.cwd(), `./projects/${projectName}.json`), JSON.stringify([]));
+        }
+
+        copyAll();
     });
 
 program.command('test')
@@ -31,5 +52,5 @@ program.command('test')
             throw(err);
         })
     });
-    
+
 program.parse();

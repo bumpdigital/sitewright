@@ -1,8 +1,11 @@
 {
   "name": "sitewright",
-  "version": "1.0.1",
+  "version": "1.0.0-beta-001",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "pack": "npm pack",
+    "new-test": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./../build/test-new-template.ps1"
+  },
   "author": "",
   "license": "MIT",
   "type": "module",
