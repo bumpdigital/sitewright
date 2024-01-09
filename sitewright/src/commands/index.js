@@ -60,6 +60,12 @@ async function setup(options, isDefault) {
 
     const envFile = `projectname=${projectName}\ndomain=${sitemap.domain || 'https://localhost'}\njswhitelist=${options.whitelist || ''}`;
     fs.writeFileSync(path.join(process.cwd(), `${isDefault ? '' : projectName}.env`), envFile);
+
+    const manifestPath = path.join(process.cwd(), 'package.json');
+    const manifestContents = fs.readFileSync(manifestPath, { encoding: 'utf-8' });
+    const manifest = JSON.parse(manifestContents);
+    manifest.type = 'module';
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, '  '));
 }
 
 program.command('init')
