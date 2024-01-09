@@ -7,11 +7,14 @@ import path from 'path';
 import { transformSitemap } from './sitemaps.js';
 
 // TODO: Rewrite setup with the fsPromise API
+// TODO: A command that updates screenshots (just test?)
+// TODO: A command that re-runs previous failures and updates the snapshots (just test?)
 // TODO: Validate root domain when no sitemap
 // TODO: Maybe not uncritically overwrite stuff
 // TODO: Validate more stuff
 // TODO: More versatile building of test args array w/different options
 // TODO: Generate URL-spec file from list of URLs
+// TODO: Figure out why the .gitignore file isn't copied by fs.cp
 
 async function copyAll() {
     const templateUrl = new URL('./../template/', import.meta.url);
@@ -104,7 +107,7 @@ program.command('test')
     .option('-r, --retries <number>', 'how many retries to do', 1)
     .option('-w, --workers <number>', 'how many workers to use', 8)
     .action((options) => {
-        const command = ['playwright', 'test', '-g', options.grep || ( options.level ? `L[0-${options.level}]\s` : 'L0' ), '--retries', options.retries, '--workers', options.workers];
+        const command = ['playwright', 'test', '-g', options.grep || ( options.level ? `L[0-${options.level}]` : 'L0' ), '--retries', options.retries, '--workers', options.workers];
         console.log('executing command', command);
         let sp = spawn('npx', command, {
             stdio: 'inherit',
